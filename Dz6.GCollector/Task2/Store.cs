@@ -41,5 +41,11 @@
 
             disposed = true;
         }
+
+        ~Store()
+        {
+            Console.WriteLine($"Class Store has deleted");
+            Dispose(false);
+        }
     }
 }
