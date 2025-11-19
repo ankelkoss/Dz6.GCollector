@@ -9,17 +9,37 @@ class Program
         Console.OutputEncoding = Encoding.UTF8;
         Console.InputEncoding = Encoding.UTF8;
 
+        Task1();
 
         Task2();
-
     }
 
     static void Task1()
     {
-        StagePlay stagePlay = new StagePlay("Ревизор", "Николай Гоголь", "Комедия", 1836);
+        using (StagePlay stagePlay = new StagePlay("Ревизор", "Николай Гоголь", "Комедия", 1836))
+        {
+            stagePlay.ShowInfo();
+            stagePlay.Show();
+        }
 
-        stagePlay.ShowInfo();
-        stagePlay.Show();
+        Console.WriteLine();
+        Console.WriteLine("Нажмите любую клавишу, чтобы протестировать using Dispose");
+        Console.ReadKey(true);
+        Console.WriteLine();
+
+        StagePlay stagePlay2 = new StagePlay("Наталка Полтавка", "Іван Котляревський", "Комедія", 1819);
+        stagePlay2.ShowInfo();
+
+        stagePlay2.Dispose();
+
+        try
+        {
+            stagePlay2.Show();
+        }
+        catch (Exception ex)
+        {
+            Console.WriteLine(ex.Message);
+        }
 
         Console.WriteLine();
         Console.WriteLine("Нажмите любую клавишу для завершения...");
